@@ -1,0 +1,49 @@
+# Entorno virtual
+venv/
+.env/
+
+# Archivos y directorios de compilación
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pkl
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+
+# Configuraciones de sistemas operativos
+.DS_Store
+*.swp
+*.swo
+
+# Archivos de logs
+*.log
+
+# Archivos de base de datos
+*.sqlite3
+
+# Archivos sensibles (llaves, credenciales)
+*.pem
+*.key
+*.env
+
+# Configuración de paquetes y dependencias
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Cachés y archivos temporales
+*.cache
+*.tmp
+
+# Archivos de configuración personal
+*.local
+*.user
+*.project
+*.sublime-workspace
+*.sublime-project
