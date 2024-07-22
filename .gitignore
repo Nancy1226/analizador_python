@@ -1,6 +1,7 @@
 # Entorno virtual
 venv/
 .env/
+venv/
 
 # Archivos y directorios de compilación
 *.pyc

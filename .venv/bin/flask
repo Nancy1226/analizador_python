@@ -1,4 +1,4 @@
-#!/Users/nancyjimenez/Documents/Universidad/8vocuatri/Compiladores/Corte3/AppFlas/.venv/bin/python3.12
+#!/Users/nancyjimenez/Documents/Universidad/8vocuatri/Compiladores/Corte3/AppFlask/.venv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys
