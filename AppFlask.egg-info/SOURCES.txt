@@ -1,0 +1,7 @@
+pyproject.toml
+setup.py
+AppFlask.egg-info/PKG-INFO
+AppFlask.egg-info/SOURCES.txt
+AppFlask.egg-info/dependency_links.txt
+AppFlask.egg-info/requires.txt
+AppFlask.egg-info/top_level.txt

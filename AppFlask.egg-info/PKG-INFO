@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: AppFlask
+Version: 0.1
+Requires-Dist: Flask==3.0.3
+Requires-Dist: blinker==1.8.2
+Requires-Dist: click==8.1.7
+Requires-Dist: Flask-Cors==4.0.1
+Requires-Dist: itsdangerous==2.2.0
+Requires-Dist: Jinja==23.1.4
+Requires-Dist: MarkupSafe==2.1.5
+Requires-Dist: pip==24.1.2
+Requires-Dist: ply==3.11
+Requires-Dist: Werkzeug==3.0.3
+Requires-Dist: build==1.2.1

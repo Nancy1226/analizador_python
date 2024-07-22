@@ -1,0 +1,785 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> CREATE DATABASE IDENTIFIER SEMICOLON
+Rule 2     statement -> DROP DATABASE IDENTIFIER SEMICOLON
+Rule 3     statement -> ALTER DATABASE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+Rule 4     statement -> CREATE TABLE IDENTIFIER LPAREN columns RPAREN SEMICOLON
+Rule 5     columns -> columns COMMA column
+Rule 6     columns -> column
+Rule 7     column -> IDENTIFIER SERIAL PRIMARY KEY
+Rule 8     column -> IDENTIFIER VARCHAR LPAREN INT RPAREN NOT NULL
+Rule 9     column -> IDENTIFIER VARCHAR LPAREN INT RPAREN
+Rule 10    column -> IDENTIFIER TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+Rule 11    statement -> DROP TABLE IDENTIFIER SEMICOLON
+Rule 12    statement -> ALTER TABLE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+Rule 13    statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values RPAREN SEMICOLON
+Rule 14    values -> values COMMA value
+Rule 15    values -> value
+Rule 16    value -> INT
+Rule 17    value -> STRING
+Rule 18    statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON
+Rule 19    statement -> DELETE FROM IDENTIFIER WHERE IDENTIFIER EQ INT SEMICOLON
+Rule 20    statement -> SELECT STAR FROM PUBLIC DOT IDENTIFIER SEMICOLON
+
+Terminals, with rules where they appear
+
+ALTER                : 3 12
+COMMA                : 5 14
+CREATE               : 1 4
+CURRENT_TIMESTAMP    : 10
+DATABASE             : 1 2 3
+DEFAULT              : 10
+DELETE               : 19
+DOT                  : 20
+DROP                 : 2 11
+EQ                   : 18 18 19
+FROM                 : 19 20
+IDENTIFIER           : 1 2 3 3 4 7 8 9 10 11 12 12 13 18 18 18 19 19 20
+INSERT               : 13
+INT                  : 8 9 16 18 19
+INTO                 : 13
+KEY                  : 7
+LPAREN               : 4 8 9 13 13
+NOT                  : 8
+NULL                 : 8
+PRIMARY              : 7
+PUBLIC               : 20
+RENAME               : 3 12
+RPAREN               : 4 8 9 13 13
+SELECT               : 20
+SEMICOLON            : 1 2 3 4 11 12 13 18 19 20
+SERIAL               : 7
+SET                  : 18
+STAR                 : 20
+STRING               : 17 18
+TABLE                : 4 11 12
+TIMESTAMP            : 10
+TO                   : 3 12
+UPDATE               : 18
+VALUES               : 13
+VARCHAR              : 8 9
+WHERE                : 18 19
+error                : 
+
+Nonterminals, with rules where they appear
+
+column               : 5 6
+columns              : 4 5 13
+statement            : 0
+value                : 14 15
+values               : 13 14
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . CREATE DATABASE IDENTIFIER SEMICOLON
+    (2) statement -> . DROP DATABASE IDENTIFIER SEMICOLON
+    (3) statement -> . ALTER DATABASE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+    (4) statement -> . CREATE TABLE IDENTIFIER LPAREN columns RPAREN SEMICOLON
+    (11) statement -> . DROP TABLE IDENTIFIER SEMICOLON
+    (12) statement -> . ALTER TABLE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+    (13) statement -> . INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values RPAREN SEMICOLON
+    (18) statement -> . UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON
+    (19) statement -> . DELETE FROM IDENTIFIER WHERE IDENTIFIER EQ INT SEMICOLON
+    (20) statement -> . SELECT STAR FROM PUBLIC DOT IDENTIFIER SEMICOLON
+
+    CREATE          shift and go to state 2
+    DROP            shift and go to state 3
+    ALTER           shift and go to state 4
+    INSERT          shift and go to state 5
+    UPDATE          shift and go to state 6
+    DELETE          shift and go to state 7
+    SELECT          shift and go to state 8
+
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> CREATE . DATABASE IDENTIFIER SEMICOLON
+    (4) statement -> CREATE . TABLE IDENTIFIER LPAREN columns RPAREN SEMICOLON
+
+    DATABASE        shift and go to state 9
+    TABLE           shift and go to state 10
+
+
+state 3
+
+    (2) statement -> DROP . DATABASE IDENTIFIER SEMICOLON
+    (11) statement -> DROP . TABLE IDENTIFIER SEMICOLON
+
+    DATABASE        shift and go to state 11
+    TABLE           shift and go to state 12
+
+
+state 4
+
+    (3) statement -> ALTER . DATABASE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+    (12) statement -> ALTER . TABLE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+
+    DATABASE        shift and go to state 13
+    TABLE           shift and go to state 14
+
+
+state 5
+
+    (13) statement -> INSERT . INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values RPAREN SEMICOLON
+
+    INTO            shift and go to state 15
+
+
+state 6
+
+    (18) statement -> UPDATE . IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON
+
+    IDENTIFIER      shift and go to state 16
+
+
+state 7
+
+    (19) statement -> DELETE . FROM IDENTIFIER WHERE IDENTIFIER EQ INT SEMICOLON
+
+    FROM            shift and go to state 17
+
+
+state 8
+
+    (20) statement -> SELECT . STAR FROM PUBLIC DOT IDENTIFIER SEMICOLON
+
+    STAR            shift and go to state 18
+
+
+state 9
+
+    (1) statement -> CREATE DATABASE . IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 19
+
+
+state 10
+
+    (4) statement -> CREATE TABLE . IDENTIFIER LPAREN columns RPAREN SEMICOLON
+
+    IDENTIFIER      shift and go to state 20
+
+
+state 11
+
+    (2) statement -> DROP DATABASE . IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 21
+
+
+state 12
+
+    (11) statement -> DROP TABLE . IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 22
+
+
+state 13
+
+    (3) statement -> ALTER DATABASE . IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 23
+
+
+state 14
+
+    (12) statement -> ALTER TABLE . IDENTIFIER RENAME TO IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 24
+
+
+state 15
+
+    (13) statement -> INSERT INTO . IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values RPAREN SEMICOLON
+
+    IDENTIFIER      shift and go to state 25
+
+
+state 16
+
+    (18) statement -> UPDATE IDENTIFIER . SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON
+
+    SET             shift and go to state 26
+
+
+state 17
+
+    (19) statement -> DELETE FROM . IDENTIFIER WHERE IDENTIFIER EQ INT SEMICOLON
+
+    IDENTIFIER      shift and go to state 27
+
+
+state 18
+
+    (20) statement -> SELECT STAR . FROM PUBLIC DOT IDENTIFIER SEMICOLON
+
+    FROM            shift and go to state 28
+
+
+state 19
+
+    (1) statement -> CREATE DATABASE IDENTIFIER . SEMICOLON
+
+    SEMICOLON       shift and go to state 29
+
+
+state 20
+
+    (4) statement -> CREATE TABLE IDENTIFIER . LPAREN columns RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 30
+
+
+state 21
+
+    (2) statement -> DROP DATABASE IDENTIFIER . SEMICOLON
+
+    SEMICOLON       shift and go to state 31
+
+
+state 22
+
+    (11) statement -> DROP TABLE IDENTIFIER . SEMICOLON
+
+    SEMICOLON       shift and go to state 32
+
+
+state 23
+
+    (3) statement -> ALTER DATABASE IDENTIFIER . RENAME TO IDENTIFIER SEMICOLON
+
+    RENAME          shift and go to state 33
+
+
+state 24
+
+    (12) statement -> ALTER TABLE IDENTIFIER . RENAME TO IDENTIFIER SEMICOLON
+
+    RENAME          shift and go to state 34
+
+
+state 25
+
+    (13) statement -> INSERT INTO IDENTIFIER . LPAREN columns RPAREN VALUES LPAREN values RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 35
+
+
+state 26
+
+    (18) statement -> UPDATE IDENTIFIER SET . IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON
+
+    IDENTIFIER      shift and go to state 36
+
+
+state 27
+
+    (19) statement -> DELETE FROM IDENTIFIER . WHERE IDENTIFIER EQ INT SEMICOLON
+
+    WHERE           shift and go to state 37
+
+
+state 28
+
+    (20) statement -> SELECT STAR FROM . PUBLIC DOT IDENTIFIER SEMICOLON
+
+    PUBLIC          shift and go to state 38
+
+
+state 29
+
+    (1) statement -> CREATE DATABASE IDENTIFIER SEMICOLON .
+
+    $end            reduce using rule 1 (statement -> CREATE DATABASE IDENTIFIER SEMICOLON .)
+
+
+state 30
+
+    (4) statement -> CREATE TABLE IDENTIFIER LPAREN . columns RPAREN SEMICOLON
+    (5) columns -> . columns COMMA column
+    (6) columns -> . column
+    (7) column -> . IDENTIFIER SERIAL PRIMARY KEY
+    (8) column -> . IDENTIFIER VARCHAR LPAREN INT RPAREN NOT NULL
+    (9) column -> . IDENTIFIER VARCHAR LPAREN INT RPAREN
+    (10) column -> . IDENTIFIER TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    IDENTIFIER      shift and go to state 39
+
+    columns                        shift and go to state 40
+    column                         shift and go to state 41
+
+state 31
+
+    (2) statement -> DROP DATABASE IDENTIFIER SEMICOLON .
+
+    $end            reduce using rule 2 (statement -> DROP DATABASE IDENTIFIER SEMICOLON .)
+
+
+state 32
+
+    (11) statement -> DROP TABLE IDENTIFIER SEMICOLON .
+
+    $end            reduce using rule 11 (statement -> DROP TABLE IDENTIFIER SEMICOLON .)
+
+
+state 33
+
+    (3) statement -> ALTER DATABASE IDENTIFIER RENAME . TO IDENTIFIER SEMICOLON
+
+    TO              shift and go to state 42
+
+
+state 34
+
+    (12) statement -> ALTER TABLE IDENTIFIER RENAME . TO IDENTIFIER SEMICOLON
+
+    TO              shift and go to state 43
+
+
+state 35
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN . columns RPAREN VALUES LPAREN values RPAREN SEMICOLON
+    (5) columns -> . columns COMMA column
+    (6) columns -> . column
+    (7) column -> . IDENTIFIER SERIAL PRIMARY KEY
+    (8) column -> . IDENTIFIER VARCHAR LPAREN INT RPAREN NOT NULL
+    (9) column -> . IDENTIFIER VARCHAR LPAREN INT RPAREN
+    (10) column -> . IDENTIFIER TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    IDENTIFIER      shift and go to state 39
+
+    columns                        shift and go to state 44
+    column                         shift and go to state 41
+
+state 36
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER . EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON
+
+    EQ              shift and go to state 45
+
+
+state 37
+
+    (19) statement -> DELETE FROM IDENTIFIER WHERE . IDENTIFIER EQ INT SEMICOLON
+
+    IDENTIFIER      shift and go to state 46
+
+
+state 38
+
+    (20) statement -> SELECT STAR FROM PUBLIC . DOT IDENTIFIER SEMICOLON
+
+    DOT             shift and go to state 47
+
+
+state 39
+
+    (7) column -> IDENTIFIER . SERIAL PRIMARY KEY
+    (8) column -> IDENTIFIER . VARCHAR LPAREN INT RPAREN NOT NULL
+    (9) column -> IDENTIFIER . VARCHAR LPAREN INT RPAREN
+    (10) column -> IDENTIFIER . TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    SERIAL          shift and go to state 48
+    VARCHAR         shift and go to state 49
+    TIMESTAMP       shift and go to state 50
+
+
+state 40
+
+    (4) statement -> CREATE TABLE IDENTIFIER LPAREN columns . RPAREN SEMICOLON
+    (5) columns -> columns . COMMA column
+
+    RPAREN          shift and go to state 51
+    COMMA           shift and go to state 52
+
+
+state 41
+
+    (6) columns -> column .
+
+    RPAREN          reduce using rule 6 (columns -> column .)
+    COMMA           reduce using rule 6 (columns -> column .)
+
+
+state 42
+
+    (3) statement -> ALTER DATABASE IDENTIFIER RENAME TO . IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 53
+
+
+state 43
+
+    (12) statement -> ALTER TABLE IDENTIFIER RENAME TO . IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 54
+
+
+state 44
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN columns . RPAREN VALUES LPAREN values RPAREN SEMICOLON
+    (5) columns -> columns . COMMA column
+
+    RPAREN          shift and go to state 55
+    COMMA           shift and go to state 52
+
+
+state 45
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ . STRING WHERE IDENTIFIER EQ INT SEMICOLON
+
+    STRING          shift and go to state 56
+
+
+state 46
+
+    (19) statement -> DELETE FROM IDENTIFIER WHERE IDENTIFIER . EQ INT SEMICOLON
+
+    EQ              shift and go to state 57
+
+
+state 47
+
+    (20) statement -> SELECT STAR FROM PUBLIC DOT . IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 58
+
+
+state 48
+
+    (7) column -> IDENTIFIER SERIAL . PRIMARY KEY
+
+    PRIMARY         shift and go to state 59
+
+
+state 49
+
+    (8) column -> IDENTIFIER VARCHAR . LPAREN INT RPAREN NOT NULL
+    (9) column -> IDENTIFIER VARCHAR . LPAREN INT RPAREN
+
+    LPAREN          shift and go to state 60
+
+
+state 50
+
+    (10) column -> IDENTIFIER TIMESTAMP . DEFAULT CURRENT_TIMESTAMP
+
+    DEFAULT         shift and go to state 61
+
+
+state 51
+
+    (4) statement -> CREATE TABLE IDENTIFIER LPAREN columns RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 62
+
+
+state 52
+
+    (5) columns -> columns COMMA . column
+    (7) column -> . IDENTIFIER SERIAL PRIMARY KEY
+    (8) column -> . IDENTIFIER VARCHAR LPAREN INT RPAREN NOT NULL
+    (9) column -> . IDENTIFIER VARCHAR LPAREN INT RPAREN
+    (10) column -> . IDENTIFIER TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+    IDENTIFIER      shift and go to state 39
+
+    column                         shift and go to state 63
+
+state 53
+
+    (3) statement -> ALTER DATABASE IDENTIFIER RENAME TO IDENTIFIER . SEMICOLON
+
+    SEMICOLON       shift and go to state 64
+
+
+state 54
+
+    (12) statement -> ALTER TABLE IDENTIFIER RENAME TO IDENTIFIER . SEMICOLON
+
+    SEMICOLON       shift and go to state 65
+
+
+state 55
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN . VALUES LPAREN values RPAREN SEMICOLON
+
+    VALUES          shift and go to state 66
+
+
+state 56
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING . WHERE IDENTIFIER EQ INT SEMICOLON
+
+    WHERE           shift and go to state 67
+
+
+state 57
+
+    (19) statement -> DELETE FROM IDENTIFIER WHERE IDENTIFIER EQ . INT SEMICOLON
+
+    INT             shift and go to state 68
+
+
+state 58
+
+    (20) statement -> SELECT STAR FROM PUBLIC DOT IDENTIFIER . SEMICOLON
+
+    SEMICOLON       shift and go to state 69
+
+
+state 59
+
+    (7) column -> IDENTIFIER SERIAL PRIMARY . KEY
+
+    KEY             shift and go to state 70
+
+
+state 60
+
+    (8) column -> IDENTIFIER VARCHAR LPAREN . INT RPAREN NOT NULL
+    (9) column -> IDENTIFIER VARCHAR LPAREN . INT RPAREN
+
+    INT             shift and go to state 71
+
+
+state 61
+
+    (10) column -> IDENTIFIER TIMESTAMP DEFAULT . CURRENT_TIMESTAMP
+
+    CURRENT_TIMESTAMP shift and go to state 72
+
+
+state 62
+
+    (4) statement -> CREATE TABLE IDENTIFIER LPAREN columns RPAREN SEMICOLON .
+
+    $end            reduce using rule 4 (statement -> CREATE TABLE IDENTIFIER LPAREN columns RPAREN SEMICOLON .)
+
+
+state 63
+
+    (5) columns -> columns COMMA column .
+
+    RPAREN          reduce using rule 5 (columns -> columns COMMA column .)
+    COMMA           reduce using rule 5 (columns -> columns COMMA column .)
+
+
+state 64
+
+    (3) statement -> ALTER DATABASE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON .
+
+    $end            reduce using rule 3 (statement -> ALTER DATABASE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON .)
+
+
+state 65
+
+    (12) statement -> ALTER TABLE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON .
+
+    $end            reduce using rule 12 (statement -> ALTER TABLE IDENTIFIER RENAME TO IDENTIFIER SEMICOLON .)
+
+
+state 66
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES . LPAREN values RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 73
+
+
+state 67
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE . IDENTIFIER EQ INT SEMICOLON
+
+    IDENTIFIER      shift and go to state 74
+
+
+state 68
+
+    (19) statement -> DELETE FROM IDENTIFIER WHERE IDENTIFIER EQ INT . SEMICOLON
+
+    SEMICOLON       shift and go to state 75
+
+
+state 69
+
+    (20) statement -> SELECT STAR FROM PUBLIC DOT IDENTIFIER SEMICOLON .
+
+    $end            reduce using rule 20 (statement -> SELECT STAR FROM PUBLIC DOT IDENTIFIER SEMICOLON .)
+
+
+state 70
+
+    (7) column -> IDENTIFIER SERIAL PRIMARY KEY .
+
+    RPAREN          reduce using rule 7 (column -> IDENTIFIER SERIAL PRIMARY KEY .)
+    COMMA           reduce using rule 7 (column -> IDENTIFIER SERIAL PRIMARY KEY .)
+
+
+state 71
+
+    (8) column -> IDENTIFIER VARCHAR LPAREN INT . RPAREN NOT NULL
+    (9) column -> IDENTIFIER VARCHAR LPAREN INT . RPAREN
+
+    RPAREN          shift and go to state 76
+
+
+state 72
+
+    (10) column -> IDENTIFIER TIMESTAMP DEFAULT CURRENT_TIMESTAMP .
+
+    RPAREN          reduce using rule 10 (column -> IDENTIFIER TIMESTAMP DEFAULT CURRENT_TIMESTAMP .)
+    COMMA           reduce using rule 10 (column -> IDENTIFIER TIMESTAMP DEFAULT CURRENT_TIMESTAMP .)
+
+
+state 73
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN . values RPAREN SEMICOLON
+    (14) values -> . values COMMA value
+    (15) values -> . value
+    (16) value -> . INT
+    (17) value -> . STRING
+
+    INT             shift and go to state 79
+    STRING          shift and go to state 80
+
+    values                         shift and go to state 77
+    value                          shift and go to state 78
+
+state 74
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER . EQ INT SEMICOLON
+
+    EQ              shift and go to state 81
+
+
+state 75
+
+    (19) statement -> DELETE FROM IDENTIFIER WHERE IDENTIFIER EQ INT SEMICOLON .
+
+    $end            reduce using rule 19 (statement -> DELETE FROM IDENTIFIER WHERE IDENTIFIER EQ INT SEMICOLON .)
+
+
+state 76
+
+    (8) column -> IDENTIFIER VARCHAR LPAREN INT RPAREN . NOT NULL
+    (9) column -> IDENTIFIER VARCHAR LPAREN INT RPAREN .
+
+    NOT             shift and go to state 82
+    RPAREN          reduce using rule 9 (column -> IDENTIFIER VARCHAR LPAREN INT RPAREN .)
+    COMMA           reduce using rule 9 (column -> IDENTIFIER VARCHAR LPAREN INT RPAREN .)
+
+
+state 77
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values . RPAREN SEMICOLON
+    (14) values -> values . COMMA value
+
+    RPAREN          shift and go to state 83
+    COMMA           shift and go to state 84
+
+
+state 78
+
+    (15) values -> value .
+
+    RPAREN          reduce using rule 15 (values -> value .)
+    COMMA           reduce using rule 15 (values -> value .)
+
+
+state 79
+
+    (16) value -> INT .
+
+    RPAREN          reduce using rule 16 (value -> INT .)
+    COMMA           reduce using rule 16 (value -> INT .)
+
+
+state 80
+
+    (17) value -> STRING .
+
+    RPAREN          reduce using rule 17 (value -> STRING .)
+    COMMA           reduce using rule 17 (value -> STRING .)
+
+
+state 81
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ . INT SEMICOLON
+
+    INT             shift and go to state 85
+
+
+state 82
+
+    (8) column -> IDENTIFIER VARCHAR LPAREN INT RPAREN NOT . NULL
+
+    NULL            shift and go to state 86
+
+
+state 83
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 87
+
+
+state 84
+
+    (14) values -> values COMMA . value
+    (16) value -> . INT
+    (17) value -> . STRING
+
+    INT             shift and go to state 79
+    STRING          shift and go to state 80
+
+    value                          shift and go to state 88
+
+state 85
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT . SEMICOLON
+
+    SEMICOLON       shift and go to state 89
+
+
+state 86
+
+    (8) column -> IDENTIFIER VARCHAR LPAREN INT RPAREN NOT NULL .
+
+    RPAREN          reduce using rule 8 (column -> IDENTIFIER VARCHAR LPAREN INT RPAREN NOT NULL .)
+    COMMA           reduce using rule 8 (column -> IDENTIFIER VARCHAR LPAREN INT RPAREN NOT NULL .)
+
+
+state 87
+
+    (13) statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values RPAREN SEMICOLON .
+
+    $end            reduce using rule 13 (statement -> INSERT INTO IDENTIFIER LPAREN columns RPAREN VALUES LPAREN values RPAREN SEMICOLON .)
+
+
+state 88
+
+    (14) values -> values COMMA value .
+
+    RPAREN          reduce using rule 14 (values -> values COMMA value .)
+    COMMA           reduce using rule 14 (values -> values COMMA value .)
+
+
+state 89
+
+    (18) statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON .
+
+    $end            reduce using rule 18 (statement -> UPDATE IDENTIFIER SET IDENTIFIER EQ STRING WHERE IDENTIFIER EQ INT SEMICOLON .)
+
